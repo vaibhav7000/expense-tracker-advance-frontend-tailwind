@@ -1,7 +1,28 @@
-import { Outlet } from "react-router"
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router"
+import { authenticateClient } from "../utils/authentication"
+import Loading from "../Components/Loading";
+
 
 
 export default function AuthWrapper() {
+    const {loading, error, verify} = authenticateClient();
+    const naviagte = useNavigate();
+
+    
+    useEffect(function() {
+        if(loading) return;
+
+        if(!error && verify) {
+            naviagte("/", {
+                replace: true
+            });
+        }
+    }, [loading]);
+
+    if(loading) return <Loading/>
+
+    if(error) return <Error/>
 
 
     return (

@@ -5,9 +5,15 @@ import Heading from "../Components/Heading";
 import Input from "../Components/Input";
 import Button from "../Components/Button";
 import ClickableText from "../Components/ClickableText";
+import { useSetAtom } from "jotai";
+import { clientAtom } from "../store/AuthStore.jsx";
+import { replace, useNavigate } from "react-router";
 
 
 export default function SignUp() {
+    const setClient = useSetAtom(clientAtom);
+    const naviagte = useNavigate();
+
     const firstNameInput = useRef();
     const lastNameInput = useRef();
     const passwordInput = useRef();
@@ -34,6 +40,32 @@ export default function SignUp() {
         if(!result.success) {
             console.log(result.error.issues);
             return;
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/api/v1/user/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    ...finalObject
+                })
+            })
+
+            const output = response.json();
+
+            if(response.status === 200) {
+                setClient(output.response);
+                naviagte("/otp", {
+                    state: {
+                        finalObject
+                    }
+                });
+                return;
+            }
+        } catch (error) {
+            
         }
     }
 
