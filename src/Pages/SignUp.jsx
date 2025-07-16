@@ -59,7 +59,7 @@ export default function SignUp() {
                 setClient(output.response);
                 naviagte("/otp", {
                     state: {
-                        finalObject
+                        finalObject, from: "signup"
                     }
                 });
                 return;

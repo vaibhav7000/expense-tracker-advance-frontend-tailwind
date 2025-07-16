@@ -5,6 +5,7 @@ import AuthWrapper from "../Wrappers/AuthWrapper";
 import ProtectedWrapper from "../Wrappers/ProtectedWrapper";
 import Loading from "../Components/Loading";
 import SignUp from "../Pages/SignUp.jsx"
+import OTP from "../Pages/OTP.jsx";
 
 export default function AppRoutes() {
 
@@ -14,7 +15,7 @@ export default function AppRoutes() {
                 <Route element={<AuthWrapper/>}>
                     <Route path="signup" element={<SignUp/>} />
                     <Route path="signin" element={<div>SignIn</div>} />
-                    <Route path="otp" element={<div>OTP</div>} />
+                    <Route path="otp" element={<OTP/>} />
                 </Route>
 
                 <Route path="" element={<ProtectedWrapper/>}>
