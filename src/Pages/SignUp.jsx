@@ -56,10 +56,9 @@ export default function SignUp() {
             const output = response.json();
 
             if(response.status === 200) {
-                setClient(output.response);
                 naviagte("/otp", {
                     state: {
-                        finalObject, from: "signup"
+                        ...finalObject, from: "signup", isEmail
                     }
                 });
                 return;
@@ -75,7 +74,8 @@ export default function SignUp() {
             <Input customStyles="flex-col gap-y-2 items-stretch" label={"Firstname"} cus placeHolder={"Enter your firstname"} type={"text"} ref={firstNameInput} id={"firstname"} />
             <Input customStyles="flex-col gap-y-2 items-stretch" label={"LastName"} placeHolder={"Enter your lastname"} type={"text"} ref={lastNameInput} id={"lastname"} />
             <div className="flex flex-col">
-                {isEmail ? <Input customStyles="flex-col gap-y-2 items-stretch" label="Email" placeHolder={"Enter your Email"} action={() => {}} type={"email"} ref={emailMobileInput}/> : <Input customStyles="flex-col gap-y-2 items-stretch" label="Mobile Number" placeHolder={"Enter your mobile number"} action={() => {}} type={"text"} ref={emailMobileInput} />}
+                {isEmail ? <Input id={"email"} customStyles="flex-col gap-y-2 items-stretch" label="Email" placeHolder={"Enter your Email"} action={() => {}} type={"email"}  ref={emailMobileInput}/> : <Input customStyles="flex-col gap-y-2 items-stretch" label="Mobile Number" placeHolder={"Enter your mobile number"} action={() => {}} id={"email"} type={"text"} ref={emailMobileInput} />}
+
                 <ClickableText customStyles={"self-end"} action={() => setIsEmail((value) => !value)} label={isEmail ? "Mobile number" : "Email"}/>
             </div>
             <Input customStyles="flex-col gap-y-2 items-stretch" label={"Password"} placeHolder={"Password"} type={"password"} ref={passwordInput} id={"password"} />

@@ -39,7 +39,7 @@ export default function AuthWrapper() {
             replace: true
         })
 
-    }, [loading]);
+    }, [loading, verify, error]);
 
     if(loading) return <Loading/>
 

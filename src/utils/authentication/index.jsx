@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useAtomValue } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { clientAtom } from "../../store/AuthStore.jsx";
 
 
 function authenticateClient() {
-    const client = useAtomValue(clientAtom);
+    const [client, setClient] = useAtom(clientAtom);
 
     const [loading, setLoading] = useState(true);
     const [verify, setVerify] = useState(false);
@@ -22,7 +22,7 @@ function authenticateClient() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "authorization": client["token"]
+                        "authorization": `Bearer ${client["token"]}`
                     },
                     body: JSON.stringify({})
                 })
@@ -32,7 +32,6 @@ function authenticateClient() {
                 if(response.status === 200) {
                     setLoading(false);
                     setVerify(true);
-                    client(output["response"]);
                     return;
                 }
 
@@ -44,7 +43,7 @@ function authenticateClient() {
         }
 
         verification()
-    }, []);
+    }, [client]);
 
     return {loading, error, verify}
 }

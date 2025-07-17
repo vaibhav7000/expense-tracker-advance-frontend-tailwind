@@ -3,10 +3,18 @@ import { useState } from "react"
 export default function Button({ label, action, customStyles = "" }) {
     const [loading, setLoading] = useState(false)
     return (
-        <div onClick={() => {
-                if (action) {
+        <div onClick={async () => {
+                if (!action) {
+                    return
+                }
+
+                try {
                     setLoading(true);
-                    action()
+                    await action();
+                } catch (error) {
+
+                } finally {
+                    setLoading(false);
                 }
         }} className={`self-stretch cursor-pointer flex items-center justify-center gap-x-4 bg-blue-500 hover:bg-blue-700 transition-all duration-200 text-white text-lg font-medium py-2 ${customStyles}`}>
             { loading &&           

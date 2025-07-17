@@ -1,10 +1,14 @@
-export default function Input({label, action, type, placeHolder, id, ref, customStyles = ""}) {
+import { forwardRef } from "react"
+
+const Input = forwardRef(({label, action, type, placeHolder, id, customStyles = ""}, ref) => {
     return (
         <div className={`flex ${customStyles}`}>
             {label && <label htmlFor={id}>{label}</label>}
-            <input className="border p-2 border-gray-400 rounded-md focus:border-blue-400 transition-all duration-200" ref={ref} type={type} onChange={() => {
+            <input className="outline-2 outline-gray-200 p-2 border-gray-400 rounded-md focus:outline-blue-400 transition-all duration-200" ref={ref} type={type} onChange={() => {
                 if(action) action()
             }} placeholder={placeHolder} id={id} />
         </div>
     )
-}
+})
+
+export default Input;

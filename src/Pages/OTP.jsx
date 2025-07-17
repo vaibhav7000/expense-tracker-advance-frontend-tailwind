@@ -3,10 +3,18 @@ import { useCallback, useEffect, useRef } from "react";
 import Button from "../Components/Button";
 import RoundInput from "../Components/RoundInput";
 import Heading from "../Components/Heading";
+import { useLocation, useNavigate } from "react-router";
+import {baseURL} from "../utils/constants.jsx";
+import { useSetAtom } from "jotai";
+import { clientAtom } from "../store/AuthStore.jsx";
 
-export default function OTP({ totalBox = 4 }) {
+export default function OTP({ totalBox = 6 }) {
+    const location = useLocation();
     const allInputReference = useRef([]);
     const currentFocusElement = useRef(0);
+    const navigate = useNavigate();
+    const setClient = useSetAtom(clientAtom);
+
     if (allInputReference.current.length !== totalBox) {
         allInputReference.current = Array(totalBox)
             .fill(null)
@@ -59,7 +67,44 @@ export default function OTP({ totalBox = 4 }) {
     }, []);
 
     async function verifyOTPAction() {
-        
+        let otp = "";
+        allInputReference.current.forEach(input => {
+            otp+=input.current.value
+        })
+
+        if(otp.length !== totalBox) {
+            alert("Enter valid otp");
+            return;
+        }
+        const payload = location.state;
+        console.log(payload)
+        const bodyValue = payload.isEmail ? {email: payload["email"]} : {mobile: payload["mobile"]};
+        try {
+            const response = await fetch(`${baseURL}api/v1/user/signup/verifyotp`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    ...bodyValue, otp
+                })
+            })
+
+            if(response.status === 201 ) {
+                const output = await response.json();
+                setClient({
+                    firstName: output.response["firstName"],
+                    lastName: output.response["lastName"],
+                    token: output.response["token"]
+                })
+                navigate("/", {
+                    replace: true
+                })
+                return
+            } 
+        } catch (error) {
+            throw error
+        }
     }
 
     return (
