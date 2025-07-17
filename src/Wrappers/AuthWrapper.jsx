@@ -25,9 +25,6 @@ export default function AuthWrapper() {
         }
 
         if(!location.state) {
-            naviagte("/signup", {
-                replace: true
-            })
             return;
         }
 
