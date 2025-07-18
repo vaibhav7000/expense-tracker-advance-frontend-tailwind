@@ -77,8 +77,8 @@ export default function SignUp() {
 
                 <ClickableText customStyles={"self-end"} action={() => setIsEmail((value) => !value)} label={isEmail ? "Mobile number" : "Email"}/>
             </div>
-            <Input customStyles="flex-col gap-y-2 items-stretch" label={"Password"} placeHolder={"Password"} type={"password"} ref={passwordInput} id={"password"} />
-            <Input customStyles="flex-col gap-y-2 items-stretch" label={"Confirm Password"} placeHolder={"Confirm Password"} type={"password"} ref={confirmPasswordInput} id={"Confirm Password"} />
+            <Input customStyles="flex-col gap-y-2 items-stretch" label={"Password"} placeHolder={"Password"} type={"password"} ref={passwordInput} id={"password"} showEye={true} />
+            <Input customStyles="flex-col gap-y-2 items-stretch" showEye={true} label={"Confirm Password"} placeHolder={"Confirm Password"} type={"password"} ref={confirmPasswordInput} id={"Confirm Password"} />
 
 
             <Button label={"Signup"} action={signUpAction} customStyles="self-stretch rounded-lg"/>

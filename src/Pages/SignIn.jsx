@@ -88,7 +88,7 @@ export default function SignIn() {
             <ClickableText customStyles={"self-end"} action={() => setEmail((value) => !value)} label={email ? "With Mobile" : "With Email"}/>
 
             {
-                otpBased ? null  : <Input ref={passwordInput} label="Password" id="password" customStyles="flex-col gap-y-2 items-stretch" type="password" />
+                otpBased ? null  : <Input ref={passwordInput} showEye={true} label="Password" id="password" customStyles="flex-col gap-y-2 items-stretch" type="password" />
             }
 
             <ClickableText customStyles={"self-end"} action={() => {

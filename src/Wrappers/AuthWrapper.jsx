@@ -46,9 +46,9 @@ export default function AuthWrapper() {
 
 
     return (
-        <div className="h-screen w-screen flex items-center justify-center bg-black/80">
+        <div className="h-screen w-screen flex items-center justify-center bg-black/40">
             <AuthBar/>
-            <div className="flex bg-white/50 box-border backdrop-blur sm:w-[60%] lg:w-[30%] p-10 flex-col rounded-2xl gap-y-4 justify-center">
+            <div className="flex bg-white/50 box-border backdrop-blur sm:w-[60%] lg:w-[30%] p-10 flex-col rounded-2xl gap-y-2 justify-center">
                 <Outlet/>
             </div>
         </div>
