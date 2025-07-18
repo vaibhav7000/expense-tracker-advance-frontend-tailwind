@@ -7,6 +7,9 @@ import Loading from "../Components/Loading";
 import SignUp from "../Pages/SignUp.jsx"
 import OTP from "../Pages/OTP.jsx";
 import SignIn from "../Pages/SignIn.jsx";
+import Home from "../Pages/Home.jsx";
+import AddExpense from "../Pages/AddExpense.jsx";
+import Card from "../Components/Card.jsx";
 
 export default function AppRoutes() {
 
@@ -20,7 +23,8 @@ export default function AppRoutes() {
                 </Route>
 
                 <Route path="" element={<ProtectedWrapper/>}>
-                    <Route index element={<div>Home</div>}/>
+                    <Route index element={<Home/>}/>
+                    <Route path="addexpense" element={<Card customStyles="flex flex-col w-[50%]"><AddExpense/></Card>} />
                 </Route>
             </Routes>
         </Suspense>

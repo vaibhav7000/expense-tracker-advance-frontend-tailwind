@@ -4,8 +4,7 @@ import { clientAtom } from "../../store/AuthStore.jsx";
 
 
 function authenticateClient() {
-    const [client, setClient] = useAtom(clientAtom);
-
+    const client = useAtomValue(clientAtom);
     const [loading, setLoading] = useState(true);
     const [verify, setVerify] = useState(false);
     const [error, setError] = useState(false);
