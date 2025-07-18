@@ -34,8 +34,26 @@ const userValidator = z.object({
 })
 
 
+const signInValidation = z.object({
+    email: z.email({
+        error: "Invalid email entered."
+    }).trim().toLowerCase().optional(),
+    mobile: z.string().trim().length(10, {
+        error: "Enter valid number of length 10"
+    }).regex(/^\d+$/, {
+        error: "Mobile should only contains numbers"
+    }).optional(),
+    password: z.string().trim().min(8, {
+        error: "Password should be atleast 8 characters"
+    }).max(20, {
+        error: "Password should be atmost 20 characters."
+    }).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
+        error: "Password must include uppercase, lowercase, number, and special character"
+    }).optional(),
+})
 
 
 
-
-export {userValidator};
+export {
+    userValidator, signInValidation
+};

@@ -26,9 +26,7 @@ export default function Button({ label, action, customStyles = "" }) {
                     <span className="sr-only">Loading...</span>
                 </div>
             }
-            <button className="cursor-pointer">
                 {label}
-            </button>
         </div>
 
     )

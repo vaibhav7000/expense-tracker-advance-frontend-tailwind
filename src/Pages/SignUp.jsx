@@ -11,8 +11,7 @@ import { replace, useNavigate } from "react-router";
 
 
 export default function SignUp() {
-    const setClient = useSetAtom(clientAtom);
-    const naviagte = useNavigate();
+    const navigate = useNavigate();
 
     const firstNameInput = useRef();
     const lastNameInput = useRef();
@@ -56,9 +55,9 @@ export default function SignUp() {
             const output = response.json();
 
             if(response.status === 200) {
-                naviagte("/otp", {
+                navigate("/otp", {
                     state: {
-                        ...finalObject, from: "signup", isEmail
+                        ...finalObject, from: "signup", isEmail, from: "signup"
                     }
                 });
                 return;
@@ -83,6 +82,15 @@ export default function SignUp() {
 
 
             <Button label={"Signup"} action={signUpAction} customStyles="self-stretch rounded-lg"/>
+
+            <div className="flex flex-row gap-x-2 self-center">
+                <Heading customStyles={""} label={"Already have account?"} />
+                <ClickableText label={"Signin"} action={() => {
+                    navigate("/signin", {
+                        replace: true
+                    })
+                }} />
+            </div>
         </>
     )
 }

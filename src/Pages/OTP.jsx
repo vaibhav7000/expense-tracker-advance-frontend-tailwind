@@ -77,10 +77,11 @@ export default function OTP({ totalBox = 6 }) {
             return;
         }
         const payload = location.state;
-        console.log(payload)
+        const from = payload["from"];
+
         const bodyValue = payload.isEmail ? {email: payload["email"]} : {mobile: payload["mobile"]};
         try {
-            const response = await fetch(`${baseURL}api/v1/user/signup/verifyotp`, {
+            const response = await fetch(`${baseURL}api/v1/user/${from}/verifyotp`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -90,7 +91,7 @@ export default function OTP({ totalBox = 6 }) {
                 })
             })
 
-            if(response.status === 201 ) {
+            if(response.status === 201 || response.status === 200) {
                 const output = await response.json();
                 setClient({
                     firstName: output.response["firstName"],
