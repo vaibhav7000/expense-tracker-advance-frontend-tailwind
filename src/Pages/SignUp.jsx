@@ -57,7 +57,7 @@ export default function SignUp() {
             if(response.status === 200) {
                 navigate("/otp", {
                     state: {
-                        ...finalObject, from: "signup", isEmail, from: "signup"
+                        ...finalObject, from: "signup", isEmail
                     }
                 });
                 return;

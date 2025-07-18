@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Outlet, replace, useLocation, useNavigate } from "react-router"
 import { authenticateClient } from "../utils/authentication"
 import Loading from "../Components/Loading";
+import Error from "../Components/Error";
+import AuthBar from "../Components/AuthComponents/AuthBar";
 
 
 
@@ -44,8 +46,9 @@ export default function AuthWrapper() {
 
 
     return (
-        <div className="h-screen w-screen flex items-center justify-center bg-blue-300">
-            <div className="flex sm:w-[60%] lg:w-[30%] p-10 flex-col rounded-2xl gap-y-4 justify-center bg-white">
+        <div className="h-screen w-screen flex items-center justify-center bg-black/80">
+            <AuthBar/>
+            <div className="flex bg-white/50 box-border backdrop-blur sm:w-[60%] lg:w-[30%] p-10 flex-col rounded-2xl gap-y-4 justify-center">
                 <Outlet/>
             </div>
         </div>
