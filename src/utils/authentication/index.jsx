@@ -9,9 +9,9 @@ function authenticateClient() {
     const [verify, setVerify] = useState(false);
     const [error, setError] = useState(false);
 
-
     useEffect(function() {
         if(!client) {
+            console.log(client);
             setLoading(false);
             return;
         }
@@ -25,7 +25,6 @@ function authenticateClient() {
                     },
                     body: JSON.stringify({})
                 })
-
                 const output = await response.json();
 
                 if(response.status === 200) {
@@ -42,7 +41,7 @@ function authenticateClient() {
         }
 
         verification()
-    }, [client]);
+    }, []);
 
     return {loading, error, verify}
 }

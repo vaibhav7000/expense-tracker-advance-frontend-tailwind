@@ -36,7 +36,7 @@ export default function ProtectRoutes() {
         if(loading) return
 
         if(!verify && !error) {
-            navigate("signup", {
+            navigate("/signup", {
                 replace: true
             });
         }

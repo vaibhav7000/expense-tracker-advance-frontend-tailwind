@@ -16,7 +16,7 @@ export default function Button({ label, action, customStyles = "" }) {
                 } finally {
                     setLoading(false);
                 }
-        }} className={`self-stretch cursor-pointer flex items-center justify-center gap-x-4 bg-blue-500 hover:bg-blue-700 transition-all duration-200 text-white text-lg font-medium py-2 ${customStyles}`}>
+        }} className={`self-stretch cursor-pointer flex  items-center justify-center gap-x-4 bg-blue-600 hover:bg-blue-700 transition-all duration-200 text-white text-lg font-medium py-2 ${customStyles}`}>
             { loading &&           
                 <div role="status">
                     <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-green-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
